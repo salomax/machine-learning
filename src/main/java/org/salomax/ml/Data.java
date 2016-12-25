@@ -24,4 +24,8 @@ public class Data {
         return target;
     }
 
+    public Double getFeature(int index) {
+        if (index < 0) return 1.0;
+        return this.getFeatures().get(index);
+    }
 }

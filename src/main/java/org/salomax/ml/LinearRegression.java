@@ -19,4 +19,14 @@ public class LinearRegression {
     public Double predication(Hypothesis hypothesis, List<Double> axeX) {
         return hypothesis.h(this.thetas, axeX);
     }
+
+    public void subtractTheta(int index, double value) {
+        MathAssert.suchThat(index, i -> i >= 0);
+        this.thetas.set(index, this.thetas.get(index) - value);
+    }
+
+    public Double getTheta(int index) {
+        MathAssert.suchThat(index, i -> i >= 0);
+        return this.thetas.get(index);
+    }
 }
