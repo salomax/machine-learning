@@ -7,6 +7,6 @@ import java.util.List;
  */
 public interface Hypothesis {
 
-    Double h(List<Double> thetas, List<Double> x);
+    Double h(List<Double> thetas, List<Double> features);
 
 }

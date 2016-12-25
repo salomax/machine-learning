@@ -1,7 +1,6 @@
 package org.salomax.ml;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,10 +8,31 @@ import java.util.List;
  */
 public class SimpleDataSet implements DataSet {
 
-    private List<Double> features = new ArrayList<>();
+    private List<Data> data = new ArrayList<>();
 
-    public void add(Double... features) {
-        this.features.addAll(Arrays.asList(features));
+    public void add(Data data) {
+        this.data.add(data);
+    }
+
+    @Override
+    public void add(Double target, Double... features) {
+        this.add(new Data(target, features));
+    }
+
+    @Override
+    public List<Data> getData() {
+        return this.data;
+    }
+
+    @Override
+    public Data get(int i) {
+        MathAssert.suchThat(i, value -> value >= 0);
+        return this.data.get(i);
+    }
+
+    @Override
+    public int size() {
+        return this.data.size();
     }
 
 }

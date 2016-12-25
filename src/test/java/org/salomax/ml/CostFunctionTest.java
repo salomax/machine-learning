@@ -1,5 +1,6 @@
 package org.salomax.ml;
 
+import org.apache.commons.math3.util.Precision;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,13 +38,14 @@ public class CostFunctionTest {
         CostFunction costFunction = new CostFunction(dataSet);
 
         LinearRegression linearRegression = new LinearRegression();
-        linearRegression.setTheta(0, 1.0);
-        linearRegression.setTheta(1, 1.0);
+        linearRegression.setTheta(0, 0.0);
+        linearRegression.setTheta(1, 0.0);
 
-        Hypothesis h = (thetas, x) -> thetas.get(0) + thetas.get(1) * x.get(0);
+        Hypothesis h = (thetas, features) -> thetas.get(0) + thetas.get(1) * features.get(0);
 
         Double costFunctionValue = costFunction.calculate(linearRegression, h);
 
+        Assert.assertThat(Precision.round(costFunctionValue, 2), CoreMatchers.equalTo(2.33));
     }
 
 }
