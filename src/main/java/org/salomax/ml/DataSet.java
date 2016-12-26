@@ -15,6 +15,6 @@ public interface DataSet {
 
     Data get(int i);
 
-    int size();
+    Integer size();
 
 }

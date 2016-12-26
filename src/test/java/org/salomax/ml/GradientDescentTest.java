@@ -15,7 +15,7 @@ public class GradientDescentTest {
         dataSet.add(2.0, 2.0);
         dataSet.add(3.0, 3.0);
 
-        Hypothesis h = (thetas, features) -> thetas.get(0) + thetas.get(1) * features.get(0);
+        Hypothesis h = (thetas, features) -> thetas.get(0) * features.get(0) + thetas.get(1) * features.get(1);
 
         GradientDescent gradientDescent = new GradientDescent();
 

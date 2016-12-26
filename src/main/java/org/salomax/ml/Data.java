@@ -1,5 +1,6 @@
 package org.salomax.ml;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Data {
 
     public Data(Double target, Double... features) {
         this.target = target;
-        this.features = Arrays.asList(features);
+        this.features = new ArrayList<>(Arrays.asList(features));
     }
 
     public List<Double> getFeatures() {
@@ -25,7 +26,7 @@ public class Data {
     }
 
     public Double getFeature(int index) {
-        if (index < 0) return 1.0;
+        MathAssert.suchThat(index, i -> i >= 0);
         return this.getFeatures().get(index);
     }
 }
