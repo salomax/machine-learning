@@ -16,8 +16,8 @@ public class LinearRegression {
         this.thetas.add(index, theta);
     }
 
-    public Double predication(Hypothesis hypothesis, List<Double> axeX) {
-        return hypothesis.h(this.thetas, axeX);
+    public Double predication(Hypothesis hypothesis, List<Double> features) {
+        return hypothesis.h(this.thetas, features);
     }
 
     public void subtractTheta(int index, double value) {

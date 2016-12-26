@@ -1,6 +1,7 @@
 package org.salomax.ml;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -11,37 +12,42 @@ public class GradientDescent {
 
     private static final Logger logger = Logger.getLogger(GradientDescent.class.getName());
 
-    public Minimum minimize(DataSet dataSet, Hypothesis hypothesis, Double learningRate, Integer maxInterations) {
+    public Minimum minimize(final DataSet dataTraining, Hypothesis hypothesis, Double learningRate, Integer maxInterations) {
 
+
+
+        MathAssert.suchThat(dataTraining.size(), v -> v > 0);
+
+        List<Data> dataSet = new ArrayList<>(dataTraining.getData());
+        addOnesColumn(dataSet);
         int m = dataSet.size();
+        int featuresSize = dataSet.get(0).getFeatures().size();
 
         LinearRegression linearRegression = new LinearRegression();
-        linearRegression.setTheta(0, 0.0);
-        linearRegression.setTheta(1, 0.0);
 
-        Double temp;
-        List<Double> thetas = new ArrayList();
+        // initialize thetas
+        for (int i = 0; i < featuresSize; i++) {
+            linearRegression.setTheta(i, 0.0);
+        }
 
+        Double[] thetasTemp = new Double[featuresSize];
         int interations = 0;
+
         do {
 
-            thetas.clear();
+            Arrays.fill(thetasTemp, 0.0);
 
-            for (Data data : dataSet.getData()) {
+            for (Data data : dataSet) {
 
-                for (int j = 0; j < data.getFeatures().size() + 1; j++) {
-                    if (j >= thetas.size()) {
-                        thetas.add(j, 0.0);
-                    }
-                    temp = (1.0/m) * (linearRegression.predication(hypothesis, data.getFeatures()) - data.getTarget()) * data.getFeature(j - 1);
-                    thetas.set(j, thetas.get(j) + temp);
+                for (int j = 0; j < data.getFeatures().size(); j++) {
+                    thetasTemp[j] += (1.0/m) * (linearRegression.predication(hypothesis, data.getFeatures()) - data.getTarget()) * data.getFeature(j);
                 }
 
             }
 
-            for (int i = 0; i < thetas.size(); i++) {
-                linearRegression.subtractTheta(i, learningRate * thetas.get(i));
-//                logger.info(String.format("\nTheta(%d) = %f", i, linearRegression.getTheta(i)));
+            for (int i = 0; i < thetasTemp.length; i++) {
+                linearRegression.subtractTheta(i, learningRate * thetasTemp[i]);
+                logger.info(String.format("\nTheta(%d) = %f", i, linearRegression.getTheta(i)));
             }
 
 //            temp0 = 0.0;
@@ -59,6 +65,12 @@ public class GradientDescent {
         } while(interations++ < maxInterations);
 
         return null;
+    }
+
+    private void addOnesColumn(List<Data> dataSet) {
+        for (Data data : dataSet) {
+            data.getFeatures().add(0, 1.0);
+        }
     }
 
 }

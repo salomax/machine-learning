@@ -1,6 +1,7 @@
 package org.salomax.ml;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ public class SimpleDataSet implements DataSet {
     private List<Data> data = new ArrayList<>();
 
     public void add(Data data) {
+        MathAssert.suchThat(data.getFeatures().size(), size -> size > 0);
         this.data.add(data);
     }
 
@@ -31,7 +33,7 @@ public class SimpleDataSet implements DataSet {
     }
 
     @Override
-    public int size() {
+    public Integer size() {
         return this.data.size();
     }
 
