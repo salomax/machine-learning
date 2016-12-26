@@ -1,4 +1,4 @@
-package org.salomax.ml;
+package org.salomax.ml.util;
 
 import java.util.function.Predicate;
 

@@ -1,7 +1,8 @@
-package org.salomax.ml;
+package org.salomax.ml.data;
+
+import org.salomax.ml.util.MathAssert;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

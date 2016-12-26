@@ -1,5 +1,9 @@
 package org.salomax.ml;
 
+import org.salomax.ml.data.Data;
+import org.salomax.ml.data.DataSet;
+import org.salomax.ml.util.MathAssert;
+
 /**
  * Created by marcos.salomao on 25/12/16.
  */

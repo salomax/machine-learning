@@ -4,6 +4,8 @@ import org.apache.commons.math3.util.Precision;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
+import org.salomax.ml.data.DataSet;
+import org.salomax.ml.data.SimpleDataSet;
 
 import java.util.Arrays;
 

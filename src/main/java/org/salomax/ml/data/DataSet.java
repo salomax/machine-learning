@@ -1,4 +1,4 @@
-package org.salomax.ml;
+package org.salomax.ml.data;
 
 import java.util.List;
 

@@ -1,6 +1,8 @@
 package org.salomax.ml;
 
 import org.junit.Test;
+import org.salomax.ml.data.DataSet;
+import org.salomax.ml.data.SimpleDataSet;
 
 /**
  * Created by marcos.salomao on 25/12/16.
